@@ -15,14 +15,6 @@ System Property _geb.env_.
 include::{sourceDir}/build.gradle[tag=systemProperties]
 ----
 
-Configure different browser drivers per Geb environment.
-
-[source,groovy]
-.src/integration-test/groovy/GebConfig.groovy
-----
-include::{sourceDir}/src/integration-test/groovy/GebConfig.groovy[]
-----
-
 Create a Geb Page to encapsulate the form markup. The use of Geb pages makes our tests easier to maintain.
 
 [source,groovy]
