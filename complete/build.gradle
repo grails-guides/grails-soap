@@ -7,6 +7,8 @@ buildscript {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails.plugins:hibernate5:7.0.0"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:3.0.11"
+        classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.1"
+
     }
 }
 
@@ -17,6 +19,7 @@ apply plugin:"eclipse"
 apply plugin:"idea"
 apply plugin:"war"
 apply plugin:"org.grails.grails-web"
+apply plugin:"com.github.erdi.webdriver-binaries"
 apply plugin:"com.bertramlabs.asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
 
@@ -64,7 +67,15 @@ dependencies {
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.grails:grails-web-testing-support"
     //tag::geb[]
+    testCompile "org.grails.plugins:geb"
     testCompile "org.mockito:mockito-core"
+    testCompile "org.seleniumhq.selenium:htmlunit-driver:2.35.1"
+    testRuntime 'net.sourceforge.htmlunit:htmlunit:2.35.0'
+    testCompile "org.seleniumhq.selenium:selenium-remote-driver:3.141.59"
+    testCompile "org.seleniumhq.selenium:selenium-api:3.141.59"
+    testCompile "org.seleniumhq.selenium:selenium-support:3.141.59"
+    testRuntime "org.seleniumhq.selenium:selenium-chrome-driver:3.141.59"
+    testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.141.59"
     //end::geb[]
     //tag::wslite[]
     compile 'com.github.groovy-wslite:groovy-wslite:1.1.3'
@@ -82,6 +93,10 @@ bootRun {
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
 
+webdriverBinaries {
+    chromedriver '77.0.3865.40'
+    geckodriver '0.24.0'
+}
 
 assets {
     minifyJs = true
